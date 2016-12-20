@@ -1,0 +1,561 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+	<title>二组积分统计</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+<style>
+*{ margin:0px; padding:0px;}
+html,body{ padding:0px; margin: 0px;}
+body { background: #e5e6e6;}
+ul,li{ list-style: none;}
+a{ text-decoration: none; color: #666;}
+.baiduorder-index{ margin:5px; background: #fff; padding: 5px 10px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33); }
+table{ width:100%; border-spacing: 0px;}
+th{ text-align: left; width: 20%; border-bottom: 1px solid #ddd; padding: 10px 8px;}
+td{ font-size:12px; border-bottom: 1px solid #ddd; padding: 10px 0px; width: 20%; }
+strong{ color: #c23531; font-size: 14px; }
+.summary{ display: none; }
+.accounts{ clear:both;}
+.accounts ul {
+  display: block;
+  height: 50px;
+  clear: both;
+}
+.accounts ul li { float: left; padding:10px; border: 1px solid #ddd; margin:0px 3px 10px; font-size:12px; box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.1); width: 140px; }
+.pagination{ float:right; clear:both; margin-top: 20px;}
+.pagination li{ float:left; padding:5px 8px; border-radius:5px; border: 1px solid #ddd; margin:0px 5px;}
+.clr{ clear:both;}
+.team ul li { float: left; padding:10px; border: 1px solid #ddd; margin:0px 10px 10px; font-size:12px; box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.1); }
+.active{ background: #c23531;}
+.active a{ color: #ffffff;}
+.calendar{ margin:30px 10px;}
+.calendar ul li { float:left; border: 1px solid #ccc; padding: 10px; width: 11%; text-align: center; }
+.calendar strong {
+  padding-bottom: 10px;
+}
+.menu{ background: #c23531; height: 50px; line-height: 50px;}
+.menu a {  color: #ffffff; float:left; width: 100px; text-align: center;}
+.accounts ul li.title {
+  width: 60px;
+  text-align: center;
+}
+td{ width: 25%; text-align: left; height: 26px;}
+td.title{ width: 20%; text-align: center;}
+.gold{ background: url('/images/gold.png') no-repeat center left; }
+.menuActive { background: #9C2020; color: #c23531; }
+</style>
+<script src="/js/echarts.min.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script>
+  jQuery(function($){
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'group=2',
+      dataType: 'script',
+      success : function(data) {
+        $("#dayCount").html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&group=2',
+      dataType: 'script',
+      success : function(data) {
+        $("#yesterdayCount").html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&group=2',
+      dataType: 'script',
+      success : function(data) {
+        $("#monthCount").html(data);
+      }
+    });
+
+	/*1*/
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=1&team=1',
+      dataType: 'script',
+      success : function(data) {
+        $(".dayCount").eq(0).html(data);
+      }
+    });
+
+	$.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&team=1',
+      dataType: 'script',
+      success : function(data) {
+        $(".yesterdayCount").eq(0).html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&team=1',
+      dataType: 'script',
+      success : function(data) {
+        $(".monthCount").eq(0).html(data);
+      }
+    });
+    /*end*/
+
+	/*2*/
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=1&team=2',
+      dataType: 'script',
+      success : function(data) {
+        $(".dayCount").eq(1).html(data);
+      }
+    });
+
+	$.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&team=2',
+      dataType: 'script',
+      success : function(data) {
+        $(".yesterdayCount").eq(1).html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&team=2',
+      dataType: 'script',
+      success : function(data) {
+        $(".monthCount").eq(1).html(data);
+      }
+    });
+    /*end*/
+
+	/*3*/
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=1&team=3',
+      dataType: 'script',
+      success : function(data) {
+        $(".dayCount").eq(2).html(data);
+      }
+    });
+
+	$.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&team=3',
+      dataType: 'script',
+      success : function(data) {
+        $(".yesterdayCount").eq(2).html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&team=3',
+      dataType: 'script',
+      success : function(data) {
+        $(".monthCount").eq(2).html(data);
+      }
+    });
+    /*end*/
+
+	/*4*/
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=1&team=10',
+      dataType: 'script',
+      success : function(data) {
+        $(".dayCount").eq(3).html(data);
+      }
+    });
+
+	$.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&team=10',
+      dataType: 'script',
+      success : function(data) {
+        $(".yesterdayCount").eq(3).html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&team=10',
+      dataType: 'script',
+      success : function(data) {
+        $(".monthCount").eq(3).html(data);
+      }
+    });
+    /*end*/
+
+  /*14*/
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=1&team=14',
+      dataType: 'script',
+      success : function(data) {
+        $(".dayCount").eq(4).html(data);
+      }
+    });
+
+  $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&team=14',
+      dataType: 'script',
+      success : function(data) {
+        $(".yesterdayCount").eq(4).html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&team=14',
+      dataType: 'script',
+      success : function(data) {
+        $(".monthCount").eq(4).html(data);
+      }
+    });
+    /*end*/
+
+  /*15*/
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=1&team=15',
+      dataType: 'script',
+      success : function(data) {
+        $(".dayCount").eq(5).html(data);
+      }
+    });
+
+  $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&team=15',
+      dataType: 'script',
+      success : function(data) {
+        $(".yesterdayCount").eq(5).html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&team=15',
+      dataType: 'script',
+      success : function(data) {
+        $(".monthCount").eq(5).html(data);
+      }
+    });
+    /*end*/ 
+
+  /*解慧文*/
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=1&team=12',
+      dataType: 'script',
+      success : function(data) {
+        $(".dayCount").eq(6).html(data);
+      }
+    });
+
+  $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&team=12',
+      dataType: 'script',
+      success : function(data) {
+        $(".yesterdayCount").eq(6).html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&team=12',
+      dataType: 'script',
+      success : function(data) {
+        $(".monthCount").eq(6).html(data);
+      }
+    });
+    /*end*/
+
+  /*张双印*/
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=1&team=17',
+      dataType: 'script',
+      success : function(data) {
+        $(".dayCount").eq(7).html(data);
+      }
+    });
+
+  $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&team=17',
+      dataType: 'script',
+      success : function(data) {
+        $(".yesterdayCount").eq(7).html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&team=17',
+      dataType: 'script',
+      success : function(data) {
+        $(".monthCount").eq(7).html(data);
+      }
+    });
+    /*end*/
+
+  /*王琳*/
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=1&team=18',
+      dataType: 'script',
+      success : function(data) {
+        $(".dayCount").eq(8).html(data);
+      }
+    });
+
+  $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&team=18',
+      dataType: 'script',
+      success : function(data) {
+        $(".yesterdayCount").eq(8).html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&team=18',
+      dataType: 'script',
+      success : function(data) {
+        $(".monthCount").eq(8).html(data);
+      }
+    });
+    /*end*/
+
+  /*邓愉*/
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=1&team=19',
+      dataType: 'script',
+      success : function(data) {
+        $(".dayCount").eq(9).html(data);
+      }
+    });
+
+  $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&team=19',
+      dataType: 'script',
+      success : function(data) {
+        $(".yesterdayCount").eq(9).html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&team=19',
+      dataType: 'script',
+      success : function(data) {
+        $(".monthCount").eq(9).html(data);
+      }
+    });
+    /*end*/
+
+  /*王海旭*/
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=1&team=22',
+      dataType: 'script',
+      success : function(data) {
+        $(".dayCount").eq(10).html(data);
+      }
+    });
+
+  $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&team=22',
+      dataType: 'script',
+      success : function(data) {
+        $(".yesterdayCount").eq(10).html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&team=22',
+      dataType: 'script',
+      success : function(data) {
+        $(".monthCount").eq(10).html(data);
+      }
+    });
+    /*end*/
+
+  /*董录录*/
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=1&team=23',
+      dataType: 'script',
+      success : function(data) {
+        $(".dayCount").eq(11).html(data);
+      }
+    });
+
+  $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=2&team=23',
+      dataType: 'script',
+      success : function(data) {
+        $(".yesterdayCount").eq(11).html(data);
+      }
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/index.php?r=zhuan16/datacount2',
+      data: 'type=3&team=23',
+      dataType: 'script',
+      success : function(data) {
+        $(".monthCount").eq(11).html(data);
+      }
+    });
+  })
+</script>
+<body>
+<div class="menu">
+  <a href="/score3.html">全部数据</a>
+  <a href="/score1.html">一组</a>
+  <a href="/score2.html"  class="menuActive">二组</a>
+</div>
+<div class="baiduorder-index">
+
+  <div class="accounts">
+  	<table>
+  	<tr>
+      <td class="title">数据统计</td>
+      <td>今日：<strong id="dayCount">加载中</strong></td>
+      <td>昨日：<strong id="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong id="monthCount">加载中</strong></td>
+    </tr>
+    <tr style="">
+      <td class="title"><strong>邓　强</strong></td>
+      <td>当日：<strong class="dayCount">加载中</strong></td>
+      <td>昨日：<strong class="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong class="monthCount">加载中</strong></td>
+    </tr>
+    <tr>
+      <td class="title"><strong>任相楠</strong></td>
+      <td>当日：<strong class="dayCount">加载中</strong></td>
+      <td>昨日：<strong class="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong class="monthCount">加载中</strong></td>
+    </tr>
+    <tr>
+      <td class="title "><strong>徐兴利</strong></td>
+      <td>当日：<strong class="dayCount">加载中</strong></td>
+      <td>昨日：<strong class="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong class="monthCount">加载中</strong></td>
+    </tr>
+    <tr>
+      <td class="title"><strong>李健男</strong></td>
+      <td>当日：<strong class="dayCount">加载中</strong></td>
+      <td>昨日：<strong class="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong class="monthCount">加载中</strong></td>
+    </tr>
+    <tr>
+      <td class="title"><strong>李丹阳</strong></td>
+      <td>当日：<strong class="dayCount">加载中</strong></td>
+      <td>昨日：<strong class="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong class="monthCount">加载中</strong></td>
+    </tr>
+    <tr>
+      <td class="title"><strong>陈熙明</strong></td>
+      <td>当日：<strong class="dayCount">加载中</strong></td>
+      <td>昨日：<strong class="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong class="monthCount">加载中</strong></td>
+    </tr>
+    <tr>
+      <td class="title"><strong>解惠文</strong></td>
+      <td>当日：<strong class="dayCount">加载中</strong></td>
+      <td>昨日：<strong class="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong class="monthCount">加载中</strong></td>
+    </tr>
+    <tr>
+      <td class="title"><strong>张双印</strong></td>
+      <td>当日：<strong class="dayCount">加载中</strong></td>
+      <td>昨日：<strong class="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong class="monthCount">加载中</strong></td>
+    </tr>
+   <tr>
+      <td class="title"><strong>王　琳</strong></td>
+      <td>当日：<strong class="dayCount">加载中</strong></td>
+      <td>昨日：<strong class="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong class="monthCount">加载中</strong></td>
+    </tr>
+    <tr>
+      <td class="title"><strong>邓　愉</strong></td>
+      <td>当日：<strong class="dayCount">加载中</strong></td>
+      <td>昨日：<strong class="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong class="monthCount">加载中</strong></td>
+    </tr>
+    <tr>
+      <td class="title"><strong>王海旭</strong></td>
+      <td>当日：<strong class="dayCount">加载中</strong></td>
+      <td>昨日：<strong class="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong class="monthCount">加载中</strong></td>
+    </tr>
+    <tr>
+      <td class="title"><strong>董录录</strong></td>
+      <td>当日：<strong class="dayCount">加载中</strong></td>
+      <td>昨日：<strong class="yesterdayCount">加载中</strong></td>
+      <td>当月：<strong class="monthCount">加载中</strong></td>
+    </tr>
+    </table>
+  </div>
+  <div class="clr"></div>
+
+</div>
+</body>
+</html>
